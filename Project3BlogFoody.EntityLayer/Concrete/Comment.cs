@@ -8,6 +8,7 @@ namespace Project3BlogFoody.EntityLayer.Concrete
 {
     public class Comment
     {
-        public int MyProperty { get; set; }
+        public int CommentId { get; set; }
+        public string CommentDetail { get; set; }
     }
 }

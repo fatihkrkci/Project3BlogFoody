@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Dtos\ArticleDtos\" />
+    <Folder Include="Dtos\CategoryDtos\" />
+    <Folder Include="Dtos\CommentDtos\" />
+    <Folder Include="Dtos\ContactDtos\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Dtos\NewsletterDtos\" />
+    <Folder Include="Dtos\TagCloudDtos\" />
+    <Folder Include="Dtos\SocialMediaDtos\" />
+  </ItemGroup>
+
+</Project>
