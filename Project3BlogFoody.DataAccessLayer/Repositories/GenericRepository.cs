@@ -12,6 +12,11 @@ namespace Project3BlogFoody.DataAccessLayer.Repositories
     {
         private readonly BlogFoodyContext _context;
 
+        public GenericRepository(BlogFoodyContext context)
+        {
+            _context = context;
+        }
+
         public void Delete(int id)
         {
             var value = _context.Set<T>().Find(id);
