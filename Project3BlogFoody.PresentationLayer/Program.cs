@@ -1,7 +1,15 @@
+using Project3BlogFoody.DataAccessLayer.Context;
+using Project3BlogFoody.EntityLayer.Concrete;
+using Project3BlogFoody.PresentationLayer.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<BlogFoodyContext>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BlogFoodyContext>().AddErrorDescriber<CustomIdentityErrorValidator>();
+
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 
