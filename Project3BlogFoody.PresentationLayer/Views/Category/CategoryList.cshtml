@@ -1,0 +1,32 @@
+﻿@model List<Project3BlogFoody.EntityLayer.Concrete.Category>
+
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <br /><br />
+    <a href="#" class="btn btn-primary">Yeni Kategori Girişi</a>
+    <br /><br />
+    <table class="table table-hover">
+        <tr>
+            <th>#</th>
+            <th>Kategori Adı</th>
+            <th>İşlemler</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.CategoryName</td>
+                <td>
+                    <a href="#" class="btn btn-success">Bloglar</a>
+                    <a href="#" class="btn btn-warning">Güncelle</a>
+                    <a href="#" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

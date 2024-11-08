@@ -1,4 +1,8 @@
+using Project3BlogFoody.BusinessLayer.Abstract;
+using Project3BlogFoody.BusinessLayer.Concrete;
+using Project3BlogFoody.DataAccessLayer.Abstract;
 using Project3BlogFoody.DataAccessLayer.Context;
+using Project3BlogFoody.DataAccessLayer.EntityFramework;
 using Project3BlogFoody.EntityLayer.Concrete;
 using Project3BlogFoody.PresentationLayer.Models;
 
@@ -8,6 +12,24 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<BlogFoodyContext>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BlogFoodyContext>().AddErrorDescriber<CustomIdentityErrorValidator>();
+
+builder.Services.AddScoped<IArticleDal, EfArticleDal>();
+builder.Services.AddScoped<IArticleService, ArticleManager>();
+
+builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
+
+builder.Services.AddScoped<ICommentDal, EfCommentDal>();
+builder.Services.AddScoped<ICommentService, CommentManager>();
+
+builder.Services.AddScoped<IContactDal, EfContactDal>();
+builder.Services.AddScoped<IContactService, ContactManager>();
+
+builder.Services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
+builder.Services.AddScoped<ISocialMediaService, SocialMediaManager>();
+
+builder.Services.AddScoped<ITagCloudDal, EfTagCloudDal>();
+builder.Services.AddScoped<ITagCloudService, TagCloudManager>();
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
@@ -25,7 +47,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
