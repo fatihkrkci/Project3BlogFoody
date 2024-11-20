@@ -9,5 +9,6 @@ namespace Project3BlogFoody.DataAccessLayer.Abstract
 {
     public interface IArticleDal : IGenericDal<Article>
     {
+        List<Article> ArticleListWithCategory();
     }
 }

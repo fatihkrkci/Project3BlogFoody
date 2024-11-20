@@ -1,4 +1,5 @@
-﻿using Project3BlogFoody.DataAccessLayer.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using Project3BlogFoody.DataAccessLayer.Abstract;
 using Project3BlogFoody.DataAccessLayer.Context;
 using Project3BlogFoody.DataAccessLayer.Repositories;
 using Project3BlogFoody.EntityLayer.Concrete;
@@ -14,6 +15,13 @@ namespace Project3BlogFoody.DataAccessLayer.EntityFramework
     {
         public EfArticleDal(BlogFoodyContext context) : base(context)
         {
+        }
+
+        public List<Article> ArticleListWithCategory()
+        {
+            var context = new BlogFoodyContext();
+            var values = context.Articles.Include(x => x.Category).ToList();
+            return values;
         }
     }
 }

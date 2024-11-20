@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project3BlogFoody.DataAccessLayer.Context;
 
@@ -11,9 +12,10 @@ using Project3BlogFoody.DataAccessLayer.Context;
 namespace Project3BlogFoody.DataAccessLayer.Migrations
 {
     [DbContext(typeof(BlogFoodyContext))]
-    partial class BlogFoodyContextModelSnapshot : ModelSnapshot
+    [Migration("20241120182641_mig8")]
+    partial class mig8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
