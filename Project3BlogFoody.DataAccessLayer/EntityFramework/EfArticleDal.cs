@@ -23,5 +23,12 @@ namespace Project3BlogFoody.DataAccessLayer.EntityFramework
             var values = context.Articles.Include(x => x.Category).ToList();
             return values;
         }
+
+        public List<Article> ArticleListWithCategoryAndAppUser()
+        {
+            var context = new BlogFoodyContext();
+            var values = context.Articles.Include(x => x.Category).Include(y => y.AppUser).ToList();
+            return values;
+        }
     }
 }
