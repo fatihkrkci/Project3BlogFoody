@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using Project3BlogFoody.BusinessLayer.Abstract;
+using Project3BlogFoody.BusinessLayer.ValidationRules.CategoryValidationRules;
 using Project3BlogFoody.EntityLayer.Concrete;
 
 namespace Project3BlogFoody.PresentationLayer.Controllers
@@ -29,8 +31,24 @@ namespace Project3BlogFoody.PresentationLayer.Controllers
         [HttpPost]
         public IActionResult CreateCategory(Category category)
         {
-            _categoryService.TInsert(category);
-            return RedirectToAction("CategoryList");
+            ModelState.Clear();
+            CreateCategoryValidator validationRules = new CreateCategoryValidator();
+            ValidationResult result = validationRules.Validate(category);
+
+            if (result.IsValid)
+            {
+                _categoryService.TInsert(category);
+                return RedirectToAction("CategoryList");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View();
+            }
+
         }
 
         public IActionResult DeleteCategory(int id)

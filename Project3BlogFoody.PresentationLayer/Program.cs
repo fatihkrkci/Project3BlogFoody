@@ -1,5 +1,7 @@
+using FluentValidation.AspNetCore;
 using Project3BlogFoody.BusinessLayer.Abstract;
 using Project3BlogFoody.BusinessLayer.Concrete;
+using Project3BlogFoody.BusinessLayer.Container;
 using Project3BlogFoody.DataAccessLayer.Abstract;
 using Project3BlogFoody.DataAccessLayer.Context;
 using Project3BlogFoody.DataAccessLayer.EntityFramework;
@@ -13,25 +15,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<BlogFoodyContext>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BlogFoodyContext>().AddErrorDescriber<CustomIdentityErrorValidator>();
 
-builder.Services.AddScoped<IArticleDal, EfArticleDal>();
-builder.Services.AddScoped<IArticleService, ArticleManager>();
+builder.Services.ContainerDependencies();
 
-builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
-builder.Services.AddScoped<ICategoryService, CategoryManager>();
-
-builder.Services.AddScoped<ICommentDal, EfCommentDal>();
-builder.Services.AddScoped<ICommentService, CommentManager>();
-
-builder.Services.AddScoped<IContactDal, EfContactDal>();
-builder.Services.AddScoped<IContactService, ContactManager>();
-
-builder.Services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
-builder.Services.AddScoped<ISocialMediaService, SocialMediaManager>();
-
-builder.Services.AddScoped<ITagCloudDal, EfTagCloudDal>();
-builder.Services.AddScoped<ITagCloudService, TagCloudManager>();
-
-builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation().AddFluentValidation();
 
 var app = builder.Build();
 
@@ -53,5 +39,13 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+});
 
 app.Run();
