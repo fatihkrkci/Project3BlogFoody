@@ -17,6 +17,13 @@ namespace Project3BlogFoody.DataAccessLayer.EntityFramework
         {
         }
 
+        public List<Comment> GetCommentsByAppUserId(int id)
+        {
+            var context = new BlogFoodyContext();
+            var values = context.Comments.Where(x => x.AppUserId == id).ToList();
+            return values;
+        }
+
         public List<Comment> GetCommentsByArticleId(int id)
         {
             var context = new BlogFoodyContext();

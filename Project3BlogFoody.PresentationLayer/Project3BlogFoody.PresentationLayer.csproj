@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Author\Data\" />
-    <Folder Include="Areas\Author\Models\" />
   </ItemGroup>
 
 </Project>

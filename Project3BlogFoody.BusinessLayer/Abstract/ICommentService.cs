@@ -10,5 +10,6 @@ namespace Project3BlogFoody.BusinessLayer.Abstract
     public interface ICommentService : IGenericService<Comment>
     {
         public List<Comment> TGetCommentsByArticleId(int id);
+        public List<Comment> TGetCommentsByAppUserId(int id);
     }
 }
